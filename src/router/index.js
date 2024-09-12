@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import LearningProcessView from '@/views/LearningProcessView.vue'
+import WorksArea from '@/views/WorksArea.vue'
 import NotFound404 from '@/views/NotFound404.vue'
 
 const router = createRouter({
@@ -11,8 +11,8 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/LearningProcess/:id',
-      component: LearningProcessView
+      path: '/worksArea/:id',
+      component: WorksArea
     },
     {
       path: '/:pathMatch(.*)*', 
