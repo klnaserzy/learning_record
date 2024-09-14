@@ -45,7 +45,7 @@ import { works, photoSticker } from '@/utils/image';
     height: 400px;
     position: fixed;
     right: 200px;
-    background-color: rgb(255, 255, 255);
+    background-color: #f2f2f2;;
     margin-top: -123px;
     padding: 10px;
     border-radius: 10px;

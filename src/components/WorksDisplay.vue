@@ -1,43 +1,37 @@
 <script setup>
-    import { onMounted, ref, watch, computed } from 'vue';
-    import { useRouter } from 'vue-router';
+    import { ref, watch, computed } from 'vue';
+    import { useRouter, useRoute } from 'vue-router';
     import { works } from '@/utils/image';
 
+    const route = useRoute();
     const router = useRouter();
-    const props = defineProps(['id']);
-    const workData = ref(works.find(data => data.id === parseInt(props.id)));
+    const id = computed(() => parseInt(route.params.id));
+    const workData = ref(works.find(data => data.id === id.value));
     const workSwitchLeft = ref(null);
     const workSwitchRight = ref(null);
     const changeWork = (move) => {
-        const nextId = parseInt(props.id) + move;
+        const nextId = id.value + move;
+        if(nextId < 0 || nextId > 7) return 
 
-        if(nextId < 0 || nextId > 7) return ;
         workData.value = works.find(data => data.id === nextId);
-        router.push(`/worksArea/${parseInt(props.id) + move}`);
-    }
-    const checkSwitchArrow = () => {
-        if(props.id === '0')
-            workSwitchLeft.value.style.color = '#0000002f';
-        else
-            workSwitchLeft.value.style.color = 'black';
-            
-
-        if(props.id === '7')
-            workSwitchRight.value.style.color = '#0000002f';
-        else
-            workSwitchRight.value.style.color = 'black';
+        router.push(`/worksArea/${id.value + move}`);
+        
     }
     const lowerCaseTransform = computed(() => workData.value.name.replace(/[A-Z]/g, ($1) => ' ' + $1.toLowerCase()))
     const newLineText = computed(() => workData.value.describe);
+    watch(() => id.value, () => {
+        if(id.value === 0)
+            workSwitchLeft.value.style.color = '#0000002f';
+        else
+            workSwitchLeft.value.style.color = 'black';
+        
+        if(id.value === 7)
+            workSwitchRight.value.style.color = '#0000002f';
+        else
+            workSwitchRight.value.style.color = 'black';
 
-    watch(() => props.id, () => {
-        checkSwitchArrow();
+        workData.value = works.find(data => data.id === id.value);
     })
-
-    onMounted(() => {
-        checkSwitchArrow();
-    })
-
 </script>
 
 <template>
@@ -51,8 +45,8 @@
                     <p v-html='newLineText'></p>
                 </article>
                 <div class='program-website-link'>
-                    <a href=''>程式</a>
-                    <a :href='workData.webpageUrl'>網頁畫面</a>
+                    <a :href='workData.programUrl' target="_blank">程式</a>
+                    <a :href='workData.webpageUrl' target="_blank">網頁畫面</a>
                 </div>
             </div>
         </main>
