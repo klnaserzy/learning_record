@@ -128,7 +128,7 @@ onMounted(() => {
     list-style-type: disc;
     font-weight: bold;
     font-size: 1.2rem;
-    border-bottom: 1px solid black;
+    background: linear-gradient(180deg, #f2f2f2 83%, #000000 83%, #000000 88%, #f2f2f2 88%);
   }
 
   .content {
