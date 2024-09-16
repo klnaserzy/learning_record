@@ -38,7 +38,7 @@
     <div class='work-container'>
         <div ref='workSwitchLeft' class='work-switch-left' @click='changeWork(-1)'><</div>
         <main class='display-container'>
-            <img class='display-img' :src='workData.img' alt='work.name image'>
+            <img class='display-img' :src='workData.img' :alt='`${workData.name} image`'>
             <div class='introduction'>
                 <article>
                     <h1>{{ lowerCaseTransform }}</h1>

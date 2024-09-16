@@ -1,8 +1,29 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router';
 import { works, photoSticker } from '@/utils/image';
 
+const liElement = ref([]);
+const navLinkElement = ref([]);
+const workElement = ref([]);
+
+const handleScroll = () => {
+  workElement.value.map((el, index) => {
+    //最後加40為margin減掉前面預留的20
+    if(window.scrollY > el.$el.offsetTop - 20 && window.scrollY < (el.$el.offsetTop + el.$el.offsetHeight + 40)){
+      liElement.value[index].classList.add("active");
+      navLinkElement.value[index].classList.add("active");
+    }
+    else{
+      liElement.value[index].classList.remove("active")
+      navLinkElement.value[index].classList.remove("active");
+    }
+  });
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', () => handleScroll());
+})
 
 </script>
 
@@ -18,12 +39,12 @@ import { works, photoSticker } from '@/utils/image';
     </div>
     <nav>
       <ul v-for='(work, index) in works' :key='index'>
-        <li><a class='navLink' :href='"#" + work.name'>{{ work.name }}</a></li>
+        <li :ref='el => liElement[index] = el'><a :ref='el => navLinkElement[index] = el' class='navLink' :href='"#" + work.name'>{{ work.name }}</a></li>
       </ul>
     </nav>
   </div>
   <div class='content' >
-    <RouterLink v-for='(work, index) in works' :to='"/worksArea/" + work.id' :key='index' :id='work.name' class='work'>
+    <RouterLink :ref='el => workElement[index] = el' v-for='(work, index) in works' :to='"/worksArea/" + work.id' :key='index' :id='work.name' class='work'>
       <img :src='work.img' :alt='`${work.name} image`'/>
       <div class="cover">
         <p>{{work.name}}</p>
@@ -93,6 +114,10 @@ import { works, photoSticker } from '@/utils/image';
     list-style-type: circle;
     color: rgba(0, 0, 0, 0.559);
   }
+
+  ul li, ul li a {
+    transition: .2s ease-in-out;
+  }
   
   ul li.active {
     list-style-type: disc;
@@ -103,10 +128,11 @@ import { works, photoSticker } from '@/utils/image';
     list-style-type: disc;
     font-weight: bold;
     font-size: 1.2rem;
+    border-bottom: 1px solid black;
   }
 
   .content {
-    margin: 30px 450px 270px 60px;
+    margin: 30px 450px 300px 60px;
   }
 
   .work {

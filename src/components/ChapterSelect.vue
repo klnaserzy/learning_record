@@ -62,7 +62,7 @@
     }
 
     .dot-link.active {
-        background-color: rgb(59, 255, 134);
+        background-color: rgb(56, 245, 128);
     }
 
     .works-container {
