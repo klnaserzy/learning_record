@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router';
 import { works, photoSticker } from '@/utils/image';
 
@@ -9,20 +9,26 @@ const workElement = ref([]);
 
 const handleScroll = () => {
   workElement.value.map((el, index) => {
-    //最後加40為margin減掉前面預留的20
-    if(window.scrollY > el.$el.offsetTop - 20 && window.scrollY < (el.$el.offsetTop + el.$el.offsetHeight + 40)){
-      liElement.value[index].classList.add("active");
-      navLinkElement.value[index].classList.add("active");
-    }
-    else{
-      liElement.value[index].classList.remove("active")
-      navLinkElement.value[index].classList.remove("active");
-    }
+      const elOffsetTop = el.$el.offsetTop;
+      const elOffsetHeight = el.$el.offsetHeight;
+
+      if (window.scrollY > elOffsetTop - 20 && window.scrollY < (elOffsetTop + elOffsetHeight + 40)) {
+        liElement.value[index].classList.add("active");
+        navLinkElement.value[index].classList.add("active");
+      } else {
+        liElement.value[index].classList.remove("active");
+        navLinkElement.value[index].classList.remove("active");
+      }
   });
-}
+};
+
 
 onMounted(() => {
-  window.addEventListener('scroll', () => handleScroll());
+  window.addEventListener('scroll', handleScroll);
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
 })
 
 </script>

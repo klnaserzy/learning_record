@@ -56,7 +56,7 @@ const works =
       id: 5,
       name: 'todoList', 
       img: todoList,
-      describe: '到這裡之前還有一些js練習的網頁 之後可能才會放上來 都忘記還有js的部分了 <br>這份原本主要要練習用fetch去串接pexels網頁的圖片的 後來都花時間在想怎麼在前端安全的用api key 目前只知道還是靠後端來處理比較好 <br>當時興高采烈地用了table導致後來想要做rwd做不出來 目前只能先放置了',
+      describe: '到這裡之前還有一些js練習的網頁 之後可能才會放上來 都忘記還有js的部分了 <br>這份原本主要要練習用fetch去串接pexels網頁的圖片的 後來都花時間在想怎麼在前端安全的用api key 目前只知道還是靠後端來處理比較好 <br>當時興高采烈地用了table導致後來想要做rwd做不出來 應該要用grid的 所以目前只能先放置了',
       webpageUrl: 'https://klnaserzy.github.io/todoList/the_same_background_rotation/index.html',
       programUrl: 'https://github.com/klnaserzy/todoList/tree/master/the_same_background_rotation'
     }, 
@@ -64,7 +64,7 @@ const works =
       id: 6,
       name: 'nutSelling', 
       img: nutSelling,
-      describe: '朋友提及他要賣的東西 覺得好玩就做了一個 剛好那時候再看一些vue的教學提到router 就馬上來實作了',
+      describe: '朋友提及他要賣的東西 覺得好玩就做了一個 剛好那時候再看一些vue的教學提到router 就馬上來試看看了',
       webpageUrl: 'https://klnaserzy.github.io/nut_selling/',
       programUrl: 'https://github.com/klnaserzy/nut_selling'
     }, 
@@ -72,7 +72,7 @@ const works =
       id: 7,
       name: 'incomeExpenses',
       img: incomeExpenses,
-      describe: '這是目前用fetch弄最久的東西了 一開始的json太複雜 後來刪掉我一開始放得太多餘的部分 也是用來練習跟vue相關的技巧的 <br>背景太空了 放一隻貓咪壓壓驚',
+      describe: '這是目前除了free code camp的最後一項js實作 接pokemon的api外 用json弄最久的東西了 一開始的json太複雜 後來刪掉我一開始放得太多餘的部分 也是用來練習跟vue相關的技巧的 <br>背景太空了 放一隻貓咪壓壓驚',
       webpageUrl: 'https://klnaserzy.github.io/income_and_expenses/',
       programUrl: 'https://github.com/klnaserzy/income_and_expenses'
     }
