@@ -3,6 +3,7 @@
     import { useRouter, useRoute } from 'vue-router';
     import { works } from '@/utils/image';
 
+    const worksLen = works.length;
     const route = useRoute();
     const router = useRouter();
     const id = computed(() => parseInt(route.params.id));
@@ -11,7 +12,7 @@
     const workSwitchRight = ref(null);
     const changeWork = (move) => {
         const nextId = id.value + move;
-        if(nextId < 0 || nextId > 7) return 
+        if(nextId < 0 || nextId > worksLen) return 
 
         workData.value = works.find(data => data.id === nextId);
         router.push(`/worksArea/${id.value + move}`);
@@ -25,7 +26,7 @@
         else
             workSwitchLeft.value.style.color = 'black';
         
-        if(id.value === 7)
+        if(id.value === worksLen)
             workSwitchRight.value.style.color = '#0000002f';
         else
             workSwitchRight.value.style.color = 'black';
