@@ -50,7 +50,13 @@
     <div class='work-container'>
         <div ref='workSwitchLeft' class='work-switch-left' @click='changeWork(-1)'><</div>
         <main class='display-container'>
-            <img class='display-img' :src='workData.img' :alt='`${workData.name} image`'>
+            <div class="img-container">
+                <img class='display-img' :src='workData.img' :alt='`${workData.name} image`'>
+                <div class="cover">
+                    <p>{{ workData.name }}</p>
+                    <p>{{ workData.toolUse }}</p>
+                </div>
+            </div>
             <div class='introduction'>
                 <article>
                     <h1>{{ lowerCaseTransform }}</h1>
@@ -104,12 +110,45 @@
         gap: 30px;
     }
 
+    .img-container {
+        position: relative;
+        text-align: center;
+    }
+
     .display-img {
         max-width: 550px;
+        height: 100%;
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    
+
+    .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 2em;
+        background-color: transparent;
+        color: transparent;
+        transition: .3s ease-in-out;
+        border-radius: 15px;
+    }
+  
+    .cover p {
+        position: relative;
+        top: calc(50% - 48px);
+    }
+
+    .img-container:hover .cover {
+        color: white;
+        background-color: #00000086;
+    }
+
+    .img-container:hover .display-img {
+        filter: blur(2px);
+    }
+
     .introduction {
         display: flex;
         flex-direction: column;
