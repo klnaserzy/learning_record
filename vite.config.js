@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'learning_record',
+  base: '/learning_record',
   plugins: [
     vue(),
   ],
