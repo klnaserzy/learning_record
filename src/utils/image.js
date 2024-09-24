@@ -6,15 +6,11 @@ import personalPortfolioWebpage from '@/assets/image/personal_portfolio_webpage.
 import todoList from '@/assets/image/todoList.png'
 import nutSelling from '@/assets/image/nut_Selling.png'
 import incomeExpenses from '@/assets/image/income_expenses.png'
-import headshot1 from '@/assets/image/headshot1.png'
-import headshot2 from '@/assets/image/headshot2.png'
 import palindromeChecker from '@/assets/image/回文檢查.png'
 import romanNumeralConverter from '@/assets/image/數字轉羅馬符號.png'
 import telephoneNumberValidator from '@/assets/image/電話碼檢查.png'
 import cashRegister from '@/assets/image/建立收銀機.png'
 import PokemonSearch from '@/assets/image/Pokemon搜尋程式.png'
-
-const headshotImg = { headshot1: headshot1, headshot2: headshot2}
 
 const works =
   [
@@ -31,7 +27,10 @@ const works =
           '調查表單/index.html'
         ]
       },
-      toolUse: 'html'
+      toolUse: 'html',
+      toolKeys: [
+        'html'
+      ]
     },
     {
       id: 1,
@@ -47,7 +46,11 @@ const works =
           '致敬頁/styles.css'
         ]
       },
-      toolUse: 'html css'
+      toolUse: 'html css',
+      toolKeys: [
+        'html',
+        'css'
+      ]
     },
     {
       id: 2,
@@ -63,7 +66,11 @@ const works =
           '技術文檔頁面/styles.css'
         ]
       },
-      toolUse: 'html css'
+      toolUse: 'html css',
+      toolKeys: [
+        'html',
+        'css'
+      ]
     },
     {
       id: 3,
@@ -79,7 +86,15 @@ const works =
           '產品登錄頁/styles.css'
         ]
       },
-      toolUse: 'html css RWD'
+      toolUse: 'html css RWD',
+      toolKeys: [
+        'html',
+        'css',
+        'rwd',
+        'responsive',
+        'web',
+        'design'
+      ]
     },
     {
       id: 4,
@@ -95,7 +110,15 @@ const works =
           '個人作品集頁面/styles.css'
         ]
       },
-      toolUse: 'html css RWD'
+      toolUse: 'html css RWD',
+      toolKeys: [
+        'html',
+        'css',
+        'rwd',
+        'responsive',
+        'web',
+        'design'
+      ]
     }, 
     {
       id: 5,
@@ -112,7 +135,13 @@ const works =
           '回文檢查器js/script.js'
         ]
       },
-      toolUse: 'html css js'
+      toolUse: 'html css js',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript'
+      ]
     }, 
     {
       id: 6,
@@ -129,7 +158,13 @@ const works =
           '數字轉羅馬符號js/script.js'
         ]
       },
-      toolUse: 'html css js'
+      toolUse: 'html css js',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript'
+      ]
     }, 
     {
       id: 7,
@@ -146,7 +181,13 @@ const works =
           '電話碼檢查js/script.js'
         ]
       },
-      toolUse: 'html css js'
+      toolUse: 'html css js',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript'
+      ]
     }, 
     {
       id: 8,
@@ -163,7 +204,13 @@ const works =
           '建立收銀機js/script.js'
         ]
       },
-      toolUse: 'html css js'
+      toolUse: 'html css js',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript'
+      ]
     }, 
     {
       id: 9,
@@ -180,7 +227,15 @@ const works =
           'pokemon搜尋程式/script.js'
         ]
       },
-      toolUse: 'html css js AJAX'
+      toolUse: 'html css js AJAX API',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript',
+        'ajax',
+        'api'
+      ]
     },
     {
       id: 10,
@@ -201,7 +256,14 @@ const works =
           'the_same_background_rotation/fetchBackgroundImg.js'
         ]
       },
-      toolUse: 'html css js AJAX'
+      toolUse: 'html css js AJAX',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript',
+        'ajax'
+      ]
     }, 
     {
       id: 11,
@@ -221,7 +283,22 @@ const works =
           'src/views/PreparingView.vue'
         ]
       },
-      toolUse: 'vue vueRouter RWD'
+      toolUse: 'vue vueRouter RWD',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript',
+        'vue',
+        'router',
+        'spa',
+        'single', 
+        'page', 
+        'application',
+        'responsive',
+        'web',
+        'design'
+      ]
     }, 
     {
       id: 12,
@@ -238,8 +315,16 @@ const works =
           'src/views/MonthView.vue'
         ]
       },
-      toolUse: 'vue'
+      toolUse: 'vue AJAX',
+      toolKeys: [
+        'html',
+        'css',
+        'js',
+        'javascript',
+        'vue',
+        'ajax'
+      ]
     }
   ]
   
-export { works, headshotImg }
+export { works }

@@ -1,32 +1,46 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, computed } from 'vue'
 import { RouterLink } from 'vue-router';
-import { works, headshotImg } from '@/utils/image';
+import { works } from '@/utils/image'; // 引入工作和頭像圖片數據
 
-const liElement = ref([]);
-const navLinkElement = ref([]);
-const workElement = ref([]);
+const liElement = ref([]); // 存儲列表項元素
+const navLinkElement = ref([]); // 存儲導航鏈接元素
+const workElement = ref([]); // 存儲工作元素
+const searchVal = ref('');
 
+// 滾動事件處理函數
 const handleScroll = () => {
   workElement.value.map((el, index) => {
-      const elOffsetTop = el.$el.offsetTop;
-      const elOffsetHeight = el.$el.offsetHeight;
+      const elOffsetTop = el.$el.offsetTop; // 元素距離頂部的距離
+      const elOffsetHeight = el.$el.offsetHeight; // 元素的高度
 
+      // 判斷當前滾動位置是否在該元素的範圍內
       if (window.scrollY > elOffsetTop - 20 && window.scrollY < (elOffsetTop + elOffsetHeight + 40)) {
-        liElement.value[index].classList.add("active");
-        navLinkElement.value[index].classList.add("active");
+        liElement.value[index].classList.add('active'); // 添加活動樣式
+        navLinkElement.value[index].classList.add('active'); // 添加活動樣式
       } else {
-        liElement.value[index].classList.remove("active");
-        navLinkElement.value[index].classList.remove("active");
+        liElement.value[index].classList.remove('active'); // 移除活動樣式
+        navLinkElement.value[index].classList.remove('active'); // 移除活動樣式
       }
   });
 };
 
+// 搜尋資料取得
+const searchResult = computed(() => {
+  if(searchVal.value === '') return works
+  
+  return works.filter(work => {
+    return work.toolKeys.some(key => key.includes(searchVal.value.toLowerCase()))
+  });
+  
+})
 
+// 當組件掛載時，添加滾動事件監聽
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 })
 
+// 當組件卸載時，移除滾動事件監聽
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
 })
@@ -36,7 +50,7 @@ onBeforeUnmount(() => {
 <template>
   <header class='filling'></header>
   <aside class='profile'>
-    <img class='photo_stickers' :src='headshotImg.headshot1' alt='photo stickers'/>
+    <img class='photo_stickers' src='@/assets/image/headshot1.png' alt='photo stickers'/>
     <nav class='community'>
       <a class='communityLink' href='https://github.com/klnaserzy' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'><path d='M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z'/></svg></a>
       <a class='communityLink' href='https://x.com/forfunuserk' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'><path d='M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM351.3 199.3v0c0 86.7-66 186.6-186.6 186.6c-37.2 0-71.7-10.8-100.7-29.4c5.3 .6 10.4 .8 15.8 .8c30.7 0 58.9-10.4 81.4-28c-28.8-.6-53-19.5-61.3-45.5c10.1 1.5 19.2 1.5 29.6-1.2c-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3c-9-6-16.4-14.1-21.5-23.6s-7.8-20.2-7.7-31c0-12.2 3.2-23.4 8.9-33.1c32.3 39.8 80.8 65.8 135.2 68.6c-9.3-44.5 24-80.6 64-80.6c18.9 0 35.9 7.9 47.9 20.7c14.8-2.8 29-8.3 41.6-15.8c-4.9 15.2-15.2 28-28.8 36.1c13.2-1.4 26-5.1 37.8-10.2c-8.9 13.1-20.1 24.7-32.9 34c.2 2.8 .2 5.7 .2 8.5z'/></svg></a>
@@ -46,7 +60,7 @@ onBeforeUnmount(() => {
     <nav>
       <ul>
         <li 
-          v-for='(work, index) in works' 
+          v-for='(work, index) in searchResult' 
           :key='index' 
           ref='liElement'
         >
@@ -56,17 +70,22 @@ onBeforeUnmount(() => {
     </nav>
   </aside>
   <div class='content' >
+    <div class='search-wrapper'>
+      <label for='search-tool'>搜尋: </label>
+      <input v-model='searchVal' id='search-tool' type='text' placeholder='例: vue'/>
+    </div>
     <RouterLink 
       ref='workElement' 
-      v-for='(work, index) in works' 
+      v-for='(work, index) in searchResult' 
       :to='"/worksArea/" + work.id' 
       :key='index' 
       :id='work.name' 
       class='work'
     >
       <img :src='work.img' :alt='`${work.name} image`'/>
-      <div class="cover">
+      <div class='cover'>
         <p>{{work.name}}</p>
+        <p>{{ work.toolUse }}</p>
       </div>
     </RouterLink>
   </div>
@@ -173,6 +192,10 @@ onBeforeUnmount(() => {
     transform: scale(1.02, 1.02);
   }
 
+  .work:hover img {
+    filter: blur(2px);
+  }
+
   img {
     max-width: 95%;
   }
@@ -186,14 +209,16 @@ onBeforeUnmount(() => {
     font-size: 2em;
     background-color: transparent;
     color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: .3s ease-in-out
   }
-
+  
   .work:hover .cover {
     color: white;
     background-color: #00000086;
+  }
+  
+  .cover p {
+    position: relative;
+    top: calc(50% - 48px);
   }
 </style>
