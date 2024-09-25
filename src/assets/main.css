@@ -1,1 +1,5 @@
 @import './base.css';
+
+body {
+    background-image: url('@/assets/image/background.png');
+}
