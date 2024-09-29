@@ -40,7 +40,7 @@ const searchResult = computed(() => {
 })
 
 // 當組件掛載時，添加滾動事件監聽
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener('scroll', handleScroll);
 })
 
@@ -92,9 +92,9 @@ onBeforeUnmount(() => {
       :id='work.name' 
       class='work'
     >
-      <img :src='work.img' :alt='`${work.name} image`'/>
+      <img v-lazy='work.img' :alt='`${work.name} image`'/>
       <div class='cover'>
-        <p>{{work.name}}</p>
+        <p>{{ work.name }}</p>
         <p>{{ work.toolUse }}</p>
       </div>
     </RouterLink>
@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
     border-radius: 100px 100px 0 0;
   }
 
-  .left-ear {
+  /* .left-ear {
     width: 30px;
     height: 30px;
     left: -7px;
@@ -158,7 +158,7 @@ onBeforeUnmount(() => {
     position: absolute;
     border-radius: 93% 7% 20% 80% / 20% 7% 93% 80%;
     background-color: gray;
-  }
+  } */
 
   .photo_stickers {
     display: block;
@@ -229,6 +229,7 @@ onBeforeUnmount(() => {
     display: block;
     width: 100%;
     max-width: 700px;
+    min-height: 200px;
     text-align: center;
     margin: 60px auto;
     box-shadow: 5px 5px 10px rgb(81, 81, 81);
