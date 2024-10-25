@@ -40,7 +40,7 @@ const searchResult = computed(() => {
 })
 
 // 當組件掛載時，添加滾動事件監聽
-onMounted(async () => {
+onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 })
 
@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
       :id='work.name' 
       class='work'
     >
-      <img v-lazy='work.img' :alt='`${work.name} image`'/>
+      <img :src='work.img' :alt='`${work.name} image`'/>
       <div class='cover'>
         <p>{{ work.name }}</p>
         <p>{{ work.toolUse }}</p>
