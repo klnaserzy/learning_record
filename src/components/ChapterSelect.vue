@@ -1,16 +1,19 @@
 <script setup>
     import { works } from '@/utils/image';
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
     import { useRoute } from 'vue-router';
  
     const route = useRoute();
     const id = computed(() => parseInt(route.params.id));
     const props = defineProps(['id']);
-    const emit = defineEmits(['selectIndex'])
+    const workImage = ref(null);
+    const emit = defineEmits(['selectIndex']);
     const chapterClick = (index) => {
         emit('selectIndex', index);
     }
     const dotActive = (index) => computed(() => index === id.value)
+    const dotMouseover = (index) => workImage.value.src = works[index].img
+    const dotMouseout = () => workImage.value.src = ''
     
 </script>
 
@@ -21,14 +24,15 @@
                 v-for='(work, index) in works' 
                 class="dot-link" 
                 :class='{ active: dotActive(index).value}'
-                @click='chapterClick(index)'
+                @click='() => chapterClick(index)'
+                @mouseover="() => dotMouseover(index)"
+                @mouseout="dotMouseout()"
+                :key="index"
             ></div>
         </div>
         <div class="works-container">
-            <div class="work-link" v-for='(work, index) in works'>
-                <div @click='chapterClick(index)'>
-                    <img :src='work.img' class='work-img' />
-                </div>
+            <div class="work-link" >
+                <img ref="workImage" class='work-img' />
             </div>
         </div>
     </div>
@@ -48,11 +52,11 @@
     }
 
     .dot-link {
-        width: 20px;
-        height: 8px;
-        margin: 0 2px;
+        width: 30px;
+        height: 12px;
+        margin: 0 6px;
         border-radius: 7px;
-        border: 1px solid rgb(59, 255, 134);
+        border: 1px solid rgb(49, 211, 111);
         transition: .2s ease-in-out;
     }
 
@@ -68,18 +72,14 @@
     .works-container {
         display: flex;
         height: 15vh;
+        width: 100%;
+        justify-content: center;
     }
 
     .work-link {
-        width: calc(100% / 6);
+        width: 200px;
         transition: .2s ease-in-out;
         object-fit: cover;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .work-link:hover {
-        width: calc(100% / 4);
     }
 
     .work-img {

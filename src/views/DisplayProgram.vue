@@ -27,7 +27,12 @@
 
             const data = await response.json();
 
-            fileName.value.push(...path.match(/\/.+/));
+            if(path.includes('/'))
+                fileName.value.push(...path.match(/\/.+/));
+            else {
+                const fileNameStr = '/' + path.match(/.+/)[0]
+                fileName.value.push(fileNameStr);
+            }
             fileData.value.push(atob(data.content));
             
             selectedFile.value = fileName.value[0];

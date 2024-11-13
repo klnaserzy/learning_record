@@ -34,32 +34,27 @@
                 <RouterLink class="modal-wrapper" :to='`${id}/program`'>
                     <div class='modal-left'>
                         <div class='guide'>
-                            <p>程式展示區傳送卡</p>
-                            <strong>位於當前網域內</strong>
+                            <p>串接github API</p>
                         </div>
-                        <p>請選擇你要前往的卡片</p>
                     </div>
-                    <div class="backCard">想想</div>
+                    <div class="backCard">查看用fetch串接GitHub的資料 但僅有顯示部分檔案</div>
                 </RouterLink>
                 <div class="modal-wrapper" @click='toggle = !toggle'>
                     <div class='modal-center'>
                         <div class='guide'>
-                            <p>再看一次這是去哪後悔卡</p>
-                            <strong>返回</strong>
+                            <p>返回</p>
                         </div>
-                        <p>請選擇你要前往的卡片</p>
                     </div>
-                    <div class="backCard">你要</div>
+                    <div class="backCard">關閉卡片</div>
                 </div>
                 <a class="modal-wrapper" @click='toggle = !toggle' :href='githubUrl' target='_blank'>
                     <div class='modal-right'>
                         <div class='guide'>
-                            <p>想離開這裡了門禁卡</p>
-                            <strong>github</strong>
+                            <p>傳送到GitHub</p>
+                            <strong></strong>
                         </div>
-                        <p>請選擇你要前往的卡片</p>
                     </div>
-                    <div class="backCard">去哪</div>
+                    <div class="backCard">前往GitHub查看所有資料夾與檔案</div>
                 </a>
             </div>
         </div>
@@ -125,10 +120,6 @@
     
     .modal-wrapper:hover .backCard {
         transform: rotateY(0deg);
-    }
-    
-    strong {
-        font-weight: bold;
     }
 
     .container {
