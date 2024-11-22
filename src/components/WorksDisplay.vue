@@ -68,7 +68,7 @@
                 </div>
             </div>
         </main>
-        <div ref='workSwitchRight' class='work-switch-right' @click='changeWork(1)'>&rtri;;</div>
+        <div ref='workSwitchRight' class='work-switch-right' @click='changeWork(1)'>&rtri;</div>
     </div>
 </template>
 
