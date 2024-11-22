@@ -34,7 +34,7 @@
                 <RouterLink class="modal-wrapper" :to='`${id}/program`'>
                     <div class='modal-left'>
                         <div class='guide'>
-                            <p>串接github API</p>
+                            <p>串接GitHub API</p>
                         </div>
                     </div>
                     <div class="backCard">查看用fetch串接GitHub的資料 但僅有顯示部分檔案</div>

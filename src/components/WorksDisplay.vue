@@ -48,7 +48,7 @@
 
 <template>
     <div class='work-container'>
-        <div ref='workSwitchLeft' class='work-switch-left' @click='changeWork(-1)'><</div>
+        <div ref='workSwitchLeft' class='work-switch-left' @click='changeWork(-1)'>&ltri;</div>
         <main class='display-container'>
             <div class="img-container">
                 <img class='display-img' :src='workData.img' :alt='`${workData.name} image`'>
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </main>
-        <div ref='workSwitchRight' class='work-switch-right' @click='changeWork(1)'>></div>
+        <div ref='workSwitchRight' class='work-switch-right' @click='changeWork(1)'>&rtri;;</div>
     </div>
 </template>
 
